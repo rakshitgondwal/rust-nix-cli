@@ -3,8 +3,8 @@
 	description = "";
 	
 	inputs = {
-		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746.url = "github:nixos/nixpkgs/a731d0cb71c58f56895f71a5b02eda2962a46746";
 		 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14.url = "github:nixos/nixpkgs/ac5c1886fd9fe49748d7ab80accc4c847481df14";
+		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746.url = "github:nixos/nixpkgs/a731d0cb71c58f56895f71a5b02eda2962a46746";
 			
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 		
@@ -20,8 +20,8 @@
 	
 	
 	 cargo2nix, 
-	 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746, 
 	 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14, 
+	 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746, 
 	 }: let
 	  supportedSystems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" "aarch64-linux" ];
 	  
@@ -44,8 +44,8 @@
 		
 	  }; 
 	  forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
-		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs = import nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746 { inherit system; };
 		 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs = import nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14 { inherit system; };
+		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs = import nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746 { inherit system; };
 		
 		
 		pkgs = import nixpkgs { inherit system;  overlays = [cargo2nix.overlays.default];  };
@@ -55,8 +55,8 @@
 	  packages = forEachSupportedSystem ({ pkgs,
 		
 		
-		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs, 
 		 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs, 
+		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs, 
 		 }: {
 		default = pkgs.callPackage ./default.nix {
 			
@@ -72,8 +72,8 @@
 		
 		
 		 rustPkgs, 
-		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs, 
 		 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs, 
+		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs, 
 		 }: {
 		devShell = pkgs.mkShell {
 		  # The Nix packages provided in the environment
@@ -88,7 +88,7 @@
 		
 		
 		 rustPkgs, 
-		 nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs,  nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs,  }: {
+		 nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs,  nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs,  }: {
 		runtime = pkgs.buildEnv {
 		  name = "runtimeenv";
 		  paths = [ 
@@ -102,7 +102,7 @@
 		
 		
 		 rustPkgs, 
-	    nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs,  nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs,  }: {
+	    nixpkgs-ac5c1886fd9fe49748d7ab80accc4c847481df14-pkgs,  nixpkgs-a731d0cb71c58f56895f71a5b02eda2962a46746-pkgs,  }: {
 		development = pkgs.buildEnv {
 		  name = "devenv";
 		  paths = [ 

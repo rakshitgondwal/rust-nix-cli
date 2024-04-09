@@ -5,6 +5,7 @@ packages {
 }
 
 rustapp {
+  workspaceSrc                  = "../."
   projectName                   = "rust-todo"
   release                       = true
   rustVersion                   = "1.75.0"
